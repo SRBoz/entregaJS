@@ -1,5 +1,5 @@
 
-let numero = prompt()
+let numero = prompt("Pon un numero");
 function esPar(numero) {
     if (numero % 2 === 0) {
         return true;
