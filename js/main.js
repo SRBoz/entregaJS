@@ -1,12 +1,11 @@
 
-let numero = prompt("Pon un numero");
+let numero = prompt("Ingresa un numero:");
 function esPar(numero) {
+    // verifico si el resto es 0
     if (numero % 2 === 0) {
         return true;
-        // console.log("El numero " + numero + " es par");
     } else {
         return false;
-        // console.log("El numero " + numero + " es impar");
     }
 
 
