@@ -25,37 +25,55 @@
 
 // Segunda entrega
 
-let tareas = [];
+let listaTareas = [];
+//Funcion para agregar tareas
+function agregarTarea() {
 
-function agregarTarea(nombre, descripcion, fechaVencimiento) {
-    do {
-        // Pido todos los datos al usuario
-        let nuevaTarea = {
-            nombre: prompt("Nombre de la tarea:").toLowerCase(),
-            descripcion: prompt("Breve descripcion de la tarea:").toLowerCase(),
-            fechaVencimiento: prompt("Fecha de vencimiento:(dd/mm)")
-        };
-        // Agrego la/s tareas a la array
-        tareas.push(nuevaTarea);
+    let nuevaTarea = {
+        nombre: prompt("Ingrese el nombre de la tarea:"),
+        descripcion: prompt("Ingrese la descripcion de la tarea:"),
+        fechaVencimiento: prompt("Ingrese la descripcion de la tarea:"),
+    };
 
-        // Pregunto si quiere agregar otra tarea (para tener un metodo de salida)
-        let otraTarea = prompt("Desea agregar otra tarea?").toLowerCase()
-        if (otraTarea !== "si") {
-            break
+    listaTareas.push(nuevaTarea);
+
+    // Mostrar las tareas
+    console.log("Tarea agregada");
+
+
+    // Preguntar si desea agregar otra tarea
+    let agregarOtra = confirm("¿Desea agregar otra tarea?");
+    if (agregarOtra) {
+        agregarTarea();
+    } else {
+        // Preguntar si desea buscar una tarea
+        let buscarTarea = confirm("¿Desea buscar una tarea?");
+        if (buscarTarea) {
+            buscarTareaPorNombre();
         }
-
     }
-    // Muestro las tareas detalladamente
-    while (nombre !== "salir");
-    console.log("Lista de tareas:");
-    tareas.forEach((tarea, index) => {
-        console.log((index + 1) + "- " +
-            "Tarea: " + tarea.nombre + ", " +
-            "Descripcion: " + tarea.descripcion + ", " +
-            "Fecha: " + tarea.fechaVencimiento);
+}
+
+// Funcion para buscar una tarea por nombre usando el metodo find
+function buscarTareaPorNombre() {
+    listaTareas.forEach((tarea, index) => {
+        console.log((index + 1) + ". " + tarea.nombre);
     });
+    let nombreBuscado = prompt("Ingrese el nombre de la tarea que desea buscar:").toLowerCase();
+
+    let tareaEncontrada = listaTareas.find(tarea => tarea.nombre === nombreBuscado);
+
+    if (tareaEncontrada) {
+        console.log("Tarea encontrada:");
+        console.log("Nombre:", tareaEncontrada.nombre);
+        console.log("Descripcion:", tareaEncontrada.descripcion);
+        console.log("Fecha de vencimiento:", tareaEncontrada.fechaVencimiento);
+    } else {
+        console.log("No se encontro ninguna tarea con ese nombre.");
+    }
 }
 
 
-
 agregarTarea()
+
+
